@@ -2,10 +2,13 @@ package hello;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
+import io.vertx.core.VertxOptions;
 
 public class MyApp extends AbstractVerticle {
 
-    private static final Vertx vertx = Vertx.vertx();
+    private static final Vertx vertx = Vertx.vertx(
+            new VertxOptions().setWorkerPoolSize(40)
+            );
 
     public static void main(String[] args) {
         vertx.deployVerticle(new MyApp());
@@ -19,11 +22,6 @@ public class MyApp extends AbstractVerticle {
     public void start() throws Exception {
         vertx.createHttpServer().requestHandler(req -> {
             if (req.path().equals("/hello")) {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 req.response().putHeader("content-type", "text/plain").end("Hello Vertx");
             } else {
                 req.response().putHeader("content-type", "text/plain").end("Home");
