@@ -7,7 +7,7 @@ import io.vertx.core.Handler;
 public class Hello {
 
     public static void main(String[] args) {
-        new Hello().sayHello2("Mark", future -> {
+        new Hello().sayHello("Mark", future -> {
             System.out.println(future.result());
         });
     }
@@ -23,21 +23,16 @@ public class Hello {
             Future<String> exclamation = Future.<String>future();
             concatWithExclamation(v, exclamation.completer());
             return exclamation;
-        })
-        .compose(v -> {
+        }).compose(v -> {
             concatWithISay(v, future.completer());
         }, future);
     }
 
-    public void sayHello(String name, Handler<AsyncResult<String>> handler) {       
+    public void sayHello(String name, Handler<AsyncResult<String>> handler) {
         concatWithHello(name, hello -> {
-            if (hello.succeeded()) {
-                concatWithExclamation(hello.result(), exclamation -> {
-                    if (exclamation.succeeded()) {
-                        concatWithISay(exclamation.result(), handler);
-                    }
-                });
-            }
+            concatWithExclamation(hello.result(), exclamation -> {
+                concatWithISay(exclamation.result(), handler);
+            });
         });
     }
 
