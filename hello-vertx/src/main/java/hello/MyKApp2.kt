@@ -2,9 +2,9 @@ package hello
 
 import io.vertx.core.AbstractVerticle
 
-class MyKApp : AbstractVerticle() {
+class MyKApp2 : AbstractVerticle() {
     override fun start() {
-        vertx.createHttpServer().requestHandler({ req ->
+        vertx.createHttpServer().requestHandler{ req ->
             req.response().end(
                     """
  <p>
@@ -12,6 +12,6 @@ class MyKApp : AbstractVerticle() {
  </p>
 """
             )
-        }).listen(8081)
+        }.listen(8081)
     }
 }
