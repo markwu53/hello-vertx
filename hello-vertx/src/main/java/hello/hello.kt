@@ -26,3 +26,4 @@ fun sayHello(name: String) {
 fun concatWithHello(name: String, handler: Handler<AsyncResult<String>>) {
     handler.handle(succeededFuture("Hello ${name}"))
 }
+
