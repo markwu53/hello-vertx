@@ -1,18 +1,16 @@
 package hello
 
 import io.vertx.core.AsyncResult
-import io.vertx.core.Future
-import io.vertx.core.Handler
 
 fun main(args: Array<String>) {
     sayHello2("Mark")
 }
 
 fun sayHello2(name: String) {
-    concatWithHello2(name) { hello ->
-        concatWithExclamation2(hello.result()) { exclamation ->
-            concatWithISay2(exclamation.result()) { future ->
-                println(future.result())
+    concatWithHello2(name) { f1 ->
+        concatWithExclamation2(f1.result()) { f2 ->
+            concatWithISay2(f2.result()) { f3 ->
+                println(f3.result())
             }
         }
     }
