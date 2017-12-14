@@ -2,6 +2,7 @@ package hello;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 public class HelloRx {
 
@@ -15,6 +16,11 @@ public class HelloRx {
         */
         Observable<String> observable = Observable.just("Hello");
         observable.subscribe(System.out::println);
+        Observable.range(0,  10).buffer(5).flatMap(batch -> {
+            return Observable.fromIterable(batch).subscribeOn(Schedulers.computation()).map(item -> {
+                return " " + item;
+            });
+        }).blockingForEach(System.out::print);
     }
 
 }
