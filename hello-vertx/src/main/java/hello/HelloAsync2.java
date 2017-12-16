@@ -15,20 +15,31 @@ public class HelloAsync2 {
     }
 
     public static void test02() {
-        Observable.just(helloFuture("Mark")).subscribeOn(Schedulers.computation()).map(f -> f.get())
-                .subscribe(System.out::println);
+        Observable<Future<String>> observable = Observable.just(helloFuture("Mark"));
+        System.out.println("after just");
+        observable = observable.subscribeOn(Schedulers.computation());
+        System.out.println("after subscribeOn");
+        Observable<String> obs = observable.map(f -> f.get());
+        System.out.println("after map");
+        obs.subscribe(System.out::println);
+        System.out.println("after subscribe");
         try {
+            System.out.println("before sleep");
             Thread.sleep(8000);
+            System.out.println("after sleep");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
     public static Future<String> helloFuture(String name) {
-        return Observable.just(name).subscribeOn(Schedulers.computation()).map(v -> {
+        Future<String> future = Observable.just(name).subscribeOn(Schedulers.computation()).map(v -> {
+            System.out.println("inside future function");
             Thread.sleep(3000);
             return "Hello " + name;
         }).toFuture();
+        System.out.println("returning future");
+        return future;
     }
 
     public static void test01() {
