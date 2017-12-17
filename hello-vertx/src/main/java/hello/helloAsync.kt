@@ -12,7 +12,7 @@ fun helloFuture(name: String) = Observable.just(name)
         }
         .toFuture()
 
-fun test02(): Unit {
+fun test02() {
     Observable.just(helloFuture("Mark"))
             .subscribeOn(Schedulers.computation())
             .map { f -> f.get() }.subscribe { println(it) }
