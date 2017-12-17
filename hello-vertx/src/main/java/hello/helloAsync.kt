@@ -17,6 +17,7 @@ fun mt(bin: (Int, Int) -> Int): Unit {
 fun nt(uni: (Int) -> Int): Unit {
     println(uni(5))
 }
+
 fun nt2(a: (Int) -> Int) = println(a(5))
 
 fun five(uni: (Int) -> Unit) = uni(5)
@@ -48,6 +49,23 @@ fun test02() {
     Thread.sleep(6000)
 }
 
+fun test04() {
+    Observable.just("a")
+            .map({
+                println("first sleep 3 seconds")
+                Thread.sleep(3000)
+                println("then continue next")
+                it
+            })
+            .map({
+                println("second sleep another 3 seconds")
+                Thread.sleep(3000)
+                println("then continue next")
+                it
+            })
+            .subscribe { println(it) }
+}
+
 fun test03() = println("hello")
 
 val test = { a: String -> "append $a" }("hello")
@@ -62,7 +80,8 @@ fun main(args: Array<String>) {
     //nt { it * it }
     //nt { it.times(1.5).toInt() }
     //five { println(it * it) }
-    five2 { println(it * 2) }
+    //five2 { println(it * 2) }
+    test04()
 }
 
 
