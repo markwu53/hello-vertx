@@ -5,10 +5,10 @@ import io.reactivex.schedulers.Schedulers
 
 fun helloFuture(name: String) = Observable.just(name)
         .subscribeOn(Schedulers.computation())
-        .map { name ->
-            println("before sleep")
-            Thread.sleep(3000)
-            "Hello ${name}"
+        .map a@ { name ->
+                println("before sleep")
+                Thread.sleep(3000)
+                return@a "Hello ${name}"
         }
         .toFuture()
 
