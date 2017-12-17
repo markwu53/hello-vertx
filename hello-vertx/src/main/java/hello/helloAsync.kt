@@ -17,8 +17,10 @@ fun mt(bin: (Int, Int) -> Int): Unit {
 fun nt(uni: (Int) -> Int): Unit {
     println(uni(5))
 }
+fun nt2(a: (Int) -> Int) = println(a(5))
 
 fun five(uni: (Int) -> Unit) = uni(5)
+val five2 = { a: (Int) -> Unit -> a(5) }
 fun ma(uni: (Int) -> Unit) = uni(5)
 
 fun helloFuture(name: String) = Observable.just(name)
@@ -59,7 +61,8 @@ fun main(args: Array<String>) {
     //mt { a, b -> a * b }
     //nt { it * it }
     //nt { it.times(1.5).toInt() }
-    five { println(it * it) }
+    //five { println(it * it) }
+    five2 { println(it * 2) }
 }
 
 
