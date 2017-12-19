@@ -11,7 +11,15 @@ public class HelloAsync2 {
 
     public static void main(String[] args) {
         // test01();
-        test02();
+        //test02();
+        test03();
+    }
+
+    public static void test03() {
+        Observable.empty().map(v -> {
+            System.out.println("Hello");
+            return v;
+        });
     }
 
     public static void test02() {

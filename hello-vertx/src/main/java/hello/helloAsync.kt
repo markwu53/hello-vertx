@@ -1,5 +1,6 @@
 package hello
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
@@ -63,13 +64,17 @@ fun test04() {
                 println("then continue next")
                 it
             })
-            .subscribe { println(it) }
+            .subscribe()
+
 }
 
 fun test03() = println("hello")
 
 val test = { a: String -> "append $a" }("hello")
 val test2 = { "message" }()
+
+fun test07() {
+}
 
 fun main(args: Array<String>) {
     //test01()
