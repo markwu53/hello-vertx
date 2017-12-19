@@ -73,8 +73,13 @@ fun test03() = println("hello")
 val test = { a: String -> "append $a" }("hello")
 val test2 = { "message" }()
 
-fun test07() {
-}
+//fun test07() = println("calling test07")
+//fun test07() = { println("calling test07") }()
+//fun test07() = { println("calling test07") }
+//val test07 = { println("calling test07") }
+//fun test07() { "hello" }
+//fun test07(): String { return "hello" }
+val test07 = { "hello" }
 
 fun main(args: Array<String>) {
     //test01()
@@ -86,7 +91,8 @@ fun main(args: Array<String>) {
     //nt { it.times(1.5).toInt() }
     //five { println(it * it) }
     //five2 { println(it * 2) }
-    test04()
+    //test04()
+    println(test07())
 }
 
 
