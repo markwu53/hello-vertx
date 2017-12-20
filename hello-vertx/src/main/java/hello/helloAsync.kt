@@ -75,11 +75,17 @@ val test2 = { "message" }()
 
 //fun test07() = println("calling test07")
 //fun test07() = { println("calling test07") }()
+//fun test07() { return { println("calling test07") }() }
+//fun test07() { return println("calling 07") }
+//fun test07(): () -> Unit { return {} }
+//fun test07(): (Int) -> Unit { return { a: Int -> println(a) } }
+//fun test07(): (Int, Int) -> Unit { return { a: Int, b: Int -> println(a + b) } }
+fun test07(): (Int, Int) -> String { return { a: Int, b: Int -> "${a+b}" } }
 //fun test07() = { println("calling test07") }
 //val test07 = { println("calling test07") }
 //fun test07() { "hello" }
 //fun test07(): String { return "hello" }
-val test07 = { "hello" }
+//val test07 = { "hello" }
 
 fun main(args: Array<String>) {
     //test01()
