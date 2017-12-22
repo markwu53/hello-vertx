@@ -80,12 +80,25 @@ val test2 = { "message" }()
 //fun test07(): () -> Unit { return {} }
 //fun test07(): (Int) -> Unit { return { a: Int -> println(a) } }
 //fun test07(): (Int, Int) -> Unit { return { a: Int, b: Int -> println(a + b) } }
-fun test07(): (Int, Int) -> String { return { a: Int, b: Int -> "${a+b}" } }
+fun test07(): (Int, Int) -> String { return { a: Int, b: Int -> "${a + b}" } }
 //fun test07() = { println("calling test07") }
 //val test07 = { println("calling test07") }
 //fun test07() { "hello" }
 //fun test07(): String { return "hello" }
 //val test07 = { "hello" }
+
+fun test08() {
+    val a = listOf<String>("hello", "world").joinToString(separator = " ")
+    println(a)
+}
+
+fun <T> myList(a: T): T {
+    return a
+}
+fun test09() {
+    val a = myList("Hello")
+    println(a)
+}
 
 fun main(args: Array<String>) {
     //test01()
@@ -98,7 +111,9 @@ fun main(args: Array<String>) {
     //five { println(it * it) }
     //five2 { println(it * 2) }
     //test04()
-    println(test07())
+    //println(test07())
+    //test08()
+    test09()
 }
 
 
